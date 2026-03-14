@@ -3,17 +3,29 @@
 import { Briefcase, ChevronRight } from 'lucide-vue-next'
 
 const experience = [
+
   {
     company: "JP Morgan Chase & Co.",
     role: "SDE 2",
     period: "Jul 2025 - Present",
-    points: ["Developing Proxy Management for India UPI", "Optimizing high-concurrency microservices"]
+    points: [
+      "Involved in architectural design for Bulk Proxy Management system for India UPI, enabling large-scale data ingestion through optimized Excel file processing.",
+      "Led the design and implementation of a high-concurrency batch-processing engine to ensure fault-tolerant proxy uploads.",
+      "Optimized microservices architecture to handle high-volume UPI transactions with sub-second latency.",
+      "Collaborated on end-to-end design patterns to improve system resilience and data validation for proxy operations."
+    ]
   },
-  {
+ {
     company: "Mercedes Benz R&D",
     role: "Senior Consultant",
     period: "2023 - 2025",
-    points: ["Built Kotlin migration libraries", "Developed MB.OS web components with Vue.js"]
+    points: [
+      "Engineered a Kotlin migration library to bridge legacy systems with modern Spring Boot microservices.",
+      "Architected a cross-functional MB.OS file-management component in Vue.js, reducing company-wide code redundancy.",
+      "Automated UI/UX design evaluations via an intelligent review system, cutting processing time by 30%.",
+      "Integrated real-time file scanning and security protocols into core storage microservices.",
+      "Mentored junior engineers to accelerate onboarding and promote best practices in clean code."
+    ]
   },
   {
     company: "Mercedes Benz R&D",
