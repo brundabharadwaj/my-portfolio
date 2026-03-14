@@ -1,7 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { Github, Linkedin, Mail, ExternalLink, MapPin, Code2, Briefcase, GraduationCap, ChevronRight, Sparkles, Home } from 'lucide-vue-next'
-
+import Skills from './components/Skills.vue'
+import Experience from './components/Experience.vue'
 // State for active page/section
 const activeSection = ref('home') 
 
@@ -91,53 +92,10 @@ const experience = [
         </section>
 
         <!-- SECTION: EXPERIENCE -->
-        <section v-else-if="activeSection === 'work'" key="work" class="max-w-4xl mx-auto">
-          <h2 class="text-4xl font-bold text-white mb-12 flex items-center gap-4">
-            <Briefcase class="text-blue-500" /> Career Path
-          </h2>
-          <div class="space-y-6">
-            <div v-for="(job, index) in experience" :key="index" 
-                 class="group p-8 rounded-3xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
-              <div class="flex flex-col md:flex-row justify-between mb-6">
-                <div>
-                  <h3 class="text-2xl font-bold text-white group-hover:text-blue-400 transition">{{ job.role }}</h3>
-                  <p class="text-lg font-medium text-slate-400">{{ job.company }}</p>
-                </div>
-                <span class="text-blue-500/50 font-mono font-bold">{{ job.period }}</span>
-              </div>
-              <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <li v-for="point in job.points" :key="point" class="flex gap-3 text-sm text-slate-400">
-                  <ChevronRight class="w-4 h-4 text-blue-500 shrink-0" /> {{ point }}
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
+         <Experience v-else-if="activeSection === 'work'" key="work" class="max-w-4xl mx-auto"/>
+        
         <!-- SECTION: SKILLS -->
-        <section v-else-if="activeSection === 'skills'" key="skills" class="max-w-4xl mx-auto">
-          <h2 class="text-4xl font-bold text-white mb-12 flex items-center gap-4">
-            <Code2 class="text-blue-500" /> Technical Stack
-          </h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="p-8 rounded-3xl bg-gradient-to-br from-blue-600/20 to-transparent border border-blue-500/20">
-              <h3 class="text-xl font-bold text-white mb-4">Backend Architecture</h3>
-              <p class="text-slate-400">Java, Spring Boot, Kotlin, Microservices, OracleDB, PostgreSQL</p>
-            </div>
-            <div class="p-8 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-blue-500/50 transition">
-              <h3 class="text-xl font-bold text-white mb-4">Frontend</h3>
-              <p class="text-slate-400">Vue.js, React, TypeScript, Tailwind CSS</p>
-            </div>
-            <div class="p-8 rounded-3xl bg-white/[0.03] border border-white/10">
-              <h3 class="text-xl font-bold text-white mb-4">Cloud & DevOps</h3>
-              <p class="text-slate-400">Azure, Docker, Kubernetes, CI/CD</p>
-            </div>
-            <div class="p-8 rounded-3xl bg-white/[0.03] border border-white/10">
-              <h3 class="text-xl font-bold text-white mb-4">Automation</h3>
-              <p class="text-slate-400">RPA, Kafka, DataDog, BlackDuck</p>
-            </div>
-          </div>
-        </section>
+        <Skills v-else-if="activeSection === 'skills'" key="skills" />
       </Transition>
     </main>
 
