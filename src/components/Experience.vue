@@ -1,37 +1,92 @@
 <script setup>
 // 1. MUST import the icons used in the template
+import { inject, computed } from 'vue'
 import { Briefcase, ChevronRight } from 'lucide-vue-next'
 
-const experience = [
-  {
-    company: "JP Morgan Chase & Co.",
-    role: "SDE 2",
-    period: "Jul 2025 - Present",
-    points: ["Developing Proxy Management for India UPI", "Optimizing high-concurrency microservices"]
+const locale = inject('locale')
+
+const translations = {
+  en: {
+    title: "Career Path",
+    jobs: [
+      {
+        company: "JP Morgan Chase & Co.",
+        role: "SDE 2",
+        period: "Jul 2025 - Present",
+        points: [
+          "Involved in architectural design for Bulk Proxy Management system for India UPI, enabling large-scale data ingestion through optimized Excel file processing.",
+          "Led the design and implementation of a high-concurrency batch-processing engine to ensure fault-tolerant proxy uploads.",
+          "Optimized microservices architecture to handle high-volume UPI transactions with sub-second latency.",
+          "Collaborated on end-to-end design patterns to improve system resilience and data validation for proxy operations."
+        ]
+      },
+      {
+        company: "Mercedes Benz R&D",
+        role: "Senior Consultant",
+        period: "2023 - 2025",
+        points: [
+          "Engineered a Kotlin migration library to bridge legacy systems with modern Spring Boot microservices.",
+          "Architected a cross-functional MB.OS file-management component in Vue.js, reducing company-wide code redundancy.",
+          "Automated UI/UX design evaluations via an intelligent review system, cutting processing time by 30%.",
+          "Integrated real-time file scanning and security protocols into core storage microservices.",
+          "Mentored junior engineers to accelerate onboarding and promote best practices in clean code."
+        ]
+      },
+      {
+        company: "Mercedes Benz R&D",
+        role: "Consultant",
+        period: "2021 - 2023",
+        points: ["Automated workflows using RPA", "Integrated BlackDuck security scanning"]
+      }
+    ]
   },
-  {
-    company: "Mercedes Benz R&D",
-    role: "Senior Consultant",
-    period: "2023 - 2025",
-    points: ["Built Kotlin migration libraries", "Developed MB.OS web components with Vue.js"]
-  },
-  {
-    company: "Mercedes Benz R&D",
-    role: "Consultant",
-    period: "2021 - 2023",
-    points: ["Automated workflows using RPA", "Integrated BlackDuck security scanning"]
+  de: {
+    title: "Werdegang",
+    jobs: [
+      {
+        company: "JP Morgan Chase & Co.",
+        role: "SDE 2",
+        period: "Jul 2025 - Heute",
+        points: [
+          "Beteiligt am Architekturdesign für das Bulk-Proxy-Verwaltungssystem für Indien UPI, das eine Datenaufnahme in großem Maßstab durch optimierte Excel-Dateiverarbeitung ermöglicht.",
+          "Leitung des Entwurfs und der Implementierung einer hochgradig nebenläufigen Stapelverarbeitungs-Engine zur Gewährleistung fehlertoleranter Proxy-Uploads.",
+          "Optimierung der Microservices-Architektur zur Bewältigung von hochvolumigen UPI-Transaktionen mit Latenzzeiten im Subsekundenbereich.",
+          "Zusammenarbeit bei End-to-End-Entwurfsmustern zur Verbesserung der Systemresilienz und Datenvalidierung für Proxy-Vorgänge."
+        ]
+      },
+      {
+        company: "Mercedes Benz R&D",
+        role: "Senior Consultant",
+        period: "2023 - 2025",
+        points: [
+          "Entwicklung einer Kotlin-Migrationsbibliothek zur Überbrückung von Altsystemen mit modernen Spring Boot-Microservices.",
+          "Architektur einer funktionsübergreifenden MB.OS-Dateiverwaltungskomponente in Vue.js, wodurch die unternehmensweite Coderedundanz verringert wurde.",
+          "Automatisierung von UI/UX-Designbewertungen durch ein intelligentes Review-System, wodurch die Bearbeitungszeit um 30 % verkürzt wurde.",
+          "Integration von Echtzeit-Dateiscanning und Sicherheitsprotokollen in Kernspeicher-Microservices.",
+          "Mentoring von Nachwuchsingenieuren zur Beschleunigung der Einarbeitung und Förderung von Best Practices für sauberen Code."
+        ]
+      },
+      {
+        company: "Mercedes Benz R&D",
+        role: "Consultant",
+        period: "2021 - 2023",
+        points: ["Automatisierung von Arbeitsabläufen mittels RPA", "Integration von BlackDuck-Sicherheitsscans"]
+      }
+    ]
   }
-]
+}
+
+const t = computed(() => translations[locale.value] || translations.en)
 </script>
 
 <template>
   <section class="max-w-4xl mx-auto">
     <h2 class="text-4xl font-bold text-white mb-12 flex items-center gap-4">
-      <Briefcase class="text-blue-500" /> Career Path
+      <Briefcase class="text-blue-500" /> {{ t.title }}
     </h2>
     <div class="space-y-6">
       <div 
-        v-for="(job, index) in experience" 
+        v-for="(job, index) in t.jobs" 
         :key="index" 
         class="group p-8 rounded-3xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500 hover:border-blue-500/30"
       >
