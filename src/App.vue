@@ -3,6 +3,7 @@ import { ref, onMounted, provide, computed } from 'vue'
 import { Github, Linkedin, Mail, ExternalLink, MapPin, Code2, Briefcase, GraduationCap, ChevronRight, Sparkles, Home } from 'lucide-vue-next'
 import Skills from './components/Skills.vue'
 import Experience from './components/Experience.vue'
+import Projects from './components/Projects.vue'
 // State for active page/section
 const activeSection = ref('home') 
 
@@ -26,7 +27,7 @@ const translations = {
     nav: {
       experience: "Experience",
       skills: "Skills",
-      contact: "Contact"
+      projects: "Projects"
     },
     home: {
       badge: "Available for Innovation",
@@ -38,7 +39,7 @@ const translations = {
     nav: {
       experience: "Erfahrung",
       skills: "Fähigkeiten",
-      contact: "Kontakt"
+      projects: "Projekte"
     },
     home: {
       badge: "Verfügbar für Innovationen",
@@ -74,7 +75,11 @@ const t = computed(() => translations[locale.value])
           :class="['transition cursor-pointer', activeSection === 'skills' ? 'text-blue-400' : 'hover:text-white']">
           {{ t.nav.skills }}
         </button>
-        <a href="mailto:brundambharadwaj@gmail.com" class="hover:text-white transition">{{ t.nav.contact }}</a>
+        <button 
+          @click="activeSection = 'projects'" 
+          :class="['transition cursor-pointer', activeSection === 'projects' ? 'text-blue-400' : 'hover:text-white']">
+          {{ t.nav.projects }}
+        </button>
       </div>
 
       <div class="ml-auto flex gap-4 items-center border-l border-white/10 pl-6">
@@ -140,6 +145,9 @@ const t = computed(() => translations[locale.value])
         
         <!-- SECTION: SKILLS -->
         <Skills v-else-if="activeSection === 'skills'" key="skills" />
+
+        <!-- SECTION: PROJECTS -->
+        <Projects v-else-if="activeSection === 'projects'" key="projects" />
       </Transition>
     </main>
 
